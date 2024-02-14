@@ -1,10 +1,14 @@
+"use client";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 function Navbar() {
+  const { total, allProducts, price } = useSelector((store) => store.products);
+
   return (
     <nav className="container flex items-center justify-between gap-5 mt-5">
       <div>
         <h2 className="font-normal text-base sm:font-medium sm:text-lg md:font-semibold md:text-xl lg:font-bold lg:text-3xl ">
-          Next Shop
+          Shop
         </h2>
       </div>
       <ul className="flex justify-between items-center gap-5">
@@ -60,7 +64,19 @@ function Navbar() {
             </svg>
           </label>
         </li>
-        <li className="badge badge-secondary w-full">1</li>
+        <li>
+          <div className="flex gap-1 ">
+            <Link
+              href="/bascket"
+              className=" btn md:btn-md lg:btn-lg font-extralight text-sm md:font-medium md:text-base lg:font-semibold lg:text-xl"
+            >
+              Total:{price}$
+              <div className=" w-10 badge badge-secondary font-extralight text-xs md:font-normal md:text-base lg:font-semibold lg:text-lg">
+                {total}
+              </div>
+            </Link>
+          </div>
+        </li>
       </ul>
     </nav>
   );
